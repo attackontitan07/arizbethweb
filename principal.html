@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/logo.ico" type="image/x-icon">
+    <title>Sobrevivir a los Titanes - Attack on Titan</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            color: #9c27b0;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: #ba68c8;
+            text-decoration: underline;
+        }
+        
+        /* Encabezado */
+        header {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 1rem 0;
+            border-bottom: 3px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #9c27b0;
+            text-shadow: 1px 1px 2px #000;
+        }
+        
+        .logo span {
+            color: #ffffff;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+        }
+        
+        nav ul li {
+            margin-right: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: #e0e0e0;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ba68c8;
+            background-color: #333;
+            text-decoration: none;
+        }
+        
+        nav ul li a.active {
+            color: #ba68c8;
+            background-color: #333;
+        }
+        
+        
+        /* Hero Section con imagen de fondo */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+        }
+        
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #9c27b0;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Contenido principal */
+        main {
+            padding: 2rem 0;
+            background-color: #1e1e1e;
+        }
+        
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        #inicio {
+            padding-top: 0;
+        }
+        
+        .post {
+            background-color: #252525;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+            border-left: 4px solid #9c27b0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .post h2, .post h3 {
+            color: #9c27b0;
+            margin-top: 0;
+        }
+        
+        .post-meta {
+            color: #9e9e9e;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Barra lateral */
+        .sidebar {
+            background-color: #252525;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar h3 {
+            color: #9c27b0;
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar ul li a {
+            color: #e0e0e0;
+            display: block;
+            transition: transform 0.3s;
+        }
+        
+        .sidebar ul li a:hover {
+            color: #ba68c8;
+            transform: translateX(5px);
+        }
+        
+        /* Pie de página */
+        footer {
+            background-color: #1a1a1a;
+            color: #9e9e9e;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+            border-top: 3px solid #333;
+        }
+        
+        /* Diseño responsivo */
+        @media (min-width: 768px) {
+            .main-content {
+                display: flex;
+                justify-content: space-between;
+            }
+            
+            .posts {
+                width: 68%;
+            }
+            
+            .sidebar {
+                width: 30%;
+                position: sticky;
+                top: 120px;
+                align-self: flex-start;
+            }
+        }
+        
+        /* Botón de volver arriba */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #9c27b0;
+            color: white;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            display: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background-color 0.3s;
+        }
+        
+        .back-to-top:hover {
+            background-color: #ba68c8;
+        }
+        
+        /* Indicador de sección activa */
+        .section-indicator {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 99;
+        }
+        
+        .section-indicator a {
+            display: block;
+            width: 12px;
+            height: 12px;
+            margin: 10px 0;
+            background-color: #333;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .section-indicator a.active {
+            background-color: #9c27b0;
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Sobrevivir<span>Titanes</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="#guias" class="nav-link">Guías</a></li>
+                    <li><a href="#tacticas" class="nav-link">Tácticas</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="section-indicator">
+        <a href="#inicio" class="indicator-dot active" title="Inicio"></a>
+        <a href="#guias" class="indicator-dot" title="Guías"></a>
+        <a href="#tacticas" class="indicator-dot" title="Tácticas"></a>
+    </div>
+    
+    <main class="container">
+        <section id="inicio">
+            <div class="hero">
+                <h1>El Mundo de Attack on Titan</h1>
+                <p>Explora el lore y la historia detrás de uno de los universos más fascinantes del anime moderno.</p>
+            </div>
+            
+            <div class="main-content">
+                <div class="posts">
+                    <article class="post">
+                        <h2>El Lore de Attack on Titan</h2>
+                        <div class="post-meta">Actualizado el 15 de Diciembre, 2023</div>
+                        <p>Attack on Titan (進撃の巨人 Shingeki no Kyojin) es un universo oscuro y complejo donde la humanidad vive al borde de la extinción, acorralada por gigantes humanoides llamados Titanes. La historia se desarrolla en un mundo que mezcla elementos de fantasía oscura con tecnología steampunk.</p>
+                        
+                        <h3>Las Tres Murallas</h3>
+                        <p>La humanidad sobrevive dentro de tres enormes murallas concéntricas:</p>
+                        <ul>
+                            <li><strong>Muralla Maria:</strong> La más externa, con un diámetro de 960 km</li>
+                            <li><strong>Muralla Rose:</strong> La intermedia, último bastión de defensa</li>
+                            <li><strong>Muralla Sina:</strong> La más interna, protegiendo al rey y la nobleza</li>
+                        </ul>
+                        
+                        <h3>Facciones Principales</h3>
+                        <p>Dentro de las murallas, la sociedad se divide en varias facciones:</p>
+                        <ul>
+                            <li><strong>El Cuerpo de Exploración:</strong> Dedican sus vidas a explorar el mundo exterior</li>
+                            <li><strong>La Policía Militar:</strong> Protegen al rey y mantienen el orden interno</li>
+                            <li><strong>La Tropa de Guarnición:</strong> Defienden las murallas y las ciudades</li>
+                            <li><strong>Los habitantes de las murallas:</strong> Divididos en distritos según su posición social</li>
+                        </ul>
+                        
+                        <h3>Los Nueve Titanes</h3>
+                        <p>Existen nueve Titanes con habilidades especiales que han jugado un papel crucial en la historia:</p>
+                        <ul>
+                            <li><strong>Titán de Ataque:</strong> Capacidad de ver memorias futuras</li>
+                            <li><strong>Titán Acorazado:</strong> Piel blindada y gran fuerza</li>
+                            <li><strong>Titán Colosal:</strong> 60 metros de altura con explosión de vapor</li>
+                            <li><strong>Titán Bestia:</strong> Forma animal y capacidad de lanzamiento</li>
+                            <li><strong>Titán Hembra:</strong> Capacidad de atraer Titanes puros</li>
+                            <li><strong>Titán Mandíbula:</strong> Velocidad y mandíbulas poderosas</li>
+                            <li><strong>Titán Martillo de Guerra:</strong> Creación de estructuras con piel endurecida</li>
+                            <li><strong>Titán Fundador:</strong> Control sobre todos los Titanes</li>
+                            <li><strong>Titán Carguero:</strong> Resistencia y capacidad de transporte</li>
+                        </ul>
+                        
+                        <p>La historia sigue a Eren Yeager, Mikasa Ackerman y Armin Arlert mientras descubren los secretos detrás de los Titanes y luchan por la supervivencia de la humanidad.</p>
+                    </article>
+                </div>
+                
+                <aside class="sidebar">
+                    <div class="sidebar-widget">
+                        <h3>Artículos Populares</h3>
+                        <ul>
+                            <li><a href="articulo1.html">Tipos de Titanes y cómo identificarlos</a></li>
+                            <li><a href="articulo2.html">Primeros auxilios después de un ataque</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </section>
+        
+        <section id="guias">
+            <h2>Guías de Supervivencia</h2>
+            
+            <div class="post">
+                <h3>Protocolo de Evacuación en Caso de Brecha</h3>
+                <div class="post-meta">Publicado el 20 de Octubre, 2023 por <a href="#">Armin Arlert</a></div>
+                <p>Cuando los Titanes penetran las murallas, cada segundo cuenta. Sigue estos pasos:</p>
+                <ol>
+                    <li><strong>Mantén la calma:</strong> El pánico reduce tus posibilidades de supervivencia.</li>
+                    <li><strong>Identifica la ubicación de la brecha:</strong> El sonido y la dirección de la gente corriendo te indicarán por dónde vienen.</li>
+                    <li><strong>Evita las calles principales:</strong> Usa callejones y pasadizos estrechos donde los Titanes no puedan pasar fácilmente.</li>
+                    <li><strong>Dirígete al distrito interior más cercano:</strong> Las murallas interiores ofrecen mayor protección.</li>
+                    <li><strong>Si estás atrapado:</strong> Busca edificios altos y entra por ventanas superiores, los Titanes no pueden saltar.</li>
+                </ol>
+                <p>Recuerda que los Titanes son más activos durante el día. Si es posible, planea tus movimientos para viajar de noche.</p>
+            </div>
+            
+            <div class="post">
+                <h3>Almacenamiento de Provisiones</h3>
+                <div class="post-meta">Publicado el 15 de Octubre, 2023 por <a href="#">Sasha Braus</a></div>
+                <p>Un buen almacén de comida puede salvarte durante un asedio prolongado:</p>
+                <ul>
+                    <li><strong>Granos:</strong> Arroz, trigo y avena en recipientes herméticos</li>
+                    <li><strong>Legumbres:</strong> Lentejas, frijoles y garbanzos</li>
+                    <li><strong>Alimentos deshidratados:</strong> Frutas, carne y vegetales</li>
+                    <li><strong>Conservas:</strong> Con fecha de expiración lejana</li>
+                    <li><strong>Agua:</strong> Al menos 4 litros por persona por día</li>
+                </ul>
+                <p>Rotación es clave: usa las provisiones más viejas primero y reemplázalas constantemente.</p>
+            </div>
+            
+            <div class="post">
+                <h3>Primeros Auxilios Básicos</h3>
+                <div class="post-meta">Publicado el 8 de Octubre, 2023 por <a href="#">Hange Zoë</a></div>
+                <p>En situaciones de ataque, la atención médica profesional puede no estar disponible:</p>
+                <ul>
+                    <li><strong>Heridas sangrantes:</strong> Presión directa con paño limpio</li>
+                    <li><strong>Fracturas:</strong> Inmovilizar con tablillas</li>
+                    <li><strong>Quemaduras:</strong> Enfriar con agua limpia, no usar hielo</li>
+                    <li><strong>Shock:</strong> Acostar a la persona, elevar piernas</li>
+                    <li><strong>Kit básico:</strong> Vendajes, antiséptico, analgésicos, tijeras</li>
+                </ul>
+                <p>Considera tomar un curso básico de primeros auxilios en tu distrito.</p>
+            </div>
+        </section>
+        
+        <section id="tacticas">
+            <h2>Tácticas Defensivas</h2>
+            
+            <div class="post">
+                <h3>Formaciones de Combate del Cuerpo de Exploración</h3>
+                <div class="post-meta">Publicado el 1 de Noviembre, 2023 por <a href="#">Levi Ackerman</a></div>
+                <p>El Cuerpo de Exploración ha desarrollado formaciones altamente efectivas para minimizar bajas:</p>
+                
+                <h4>Formación en Cuña</h4>
+                <p>Ideal para terrenos abiertos. Un líder experimentado va al frente con equipos de apoyo en los flancos.</p>
+                
+                <h4>Formación de Doble Envolvente</h4>
+                <p>Para enfrentar Titanes aberrantes. Dos equipos atacan desde direcciones opuestas para confundir al Titán.</p>
+                
+                <h4>Formación de Escolta</h4>
+                <p>Para proteger a miembros no combatientes o heridos. Los soldados forman un círculo defensivo.</p>
+                
+                <h4>Señales Manuales</h4>
+                <p>Cuando el ruido impide la comunicación verbal:</p>
+                <ul>
+                    <li>Mano arriba: Titán detectado</li>
+                    <li>Brazo extendido: Dirección del peligro</li>
+                    <li>Movimiento circular: Cambio de formación</li>
+                    <li>Puño cerrado: Retirada inmediata</li>
+                </ul>
+            </div>
+            
+            <div class="post">
+                <h3>Técnicas de Movimiento con Equipo 3D</h3>
+                <div class="post-meta">Publicado el 25 de Octubre, 2023 por <a href="#">Petra Ral</a></div>
+                <p>Dominar el equipo de maniobras requiere práctica constante:</p>
+                
+                <h4>Hook Shot Básico</h4>
+                <p>1. Apunta a estructuras sólidas por encima de ti<br>
+                2. Dispara ambos ganchos simultáneamente<br>
+                3. Activa el gas para impulsarte<br>
+                4. Retrae los ganchos al alcanzar el punto máximo</p>
+                
+                <h4>Cambio de Dirección en el Aire</h4>
+                <p>1. Durante el impulso, gira tu cuerpo<br>
+                2. Dispara un nuevo gancho en la dirección deseada<br>
+                3. Libera el gancho opuesto<br>
+                4. Ajusta el flujo de gas para mantener momentum</p>
+                
+                <h4>Conservación de Recursos</h4>
+                <p>- Usa la gravedad a tu favor cuando sea posible<br>
+                - Planifica rutas con puntos de anclaje múltiples<br>
+                - Practica movimientos sin gas en áreas seguras<br>
+                - Revisa tus tanques después de cada misión</p>
+            </div>
+            
+            <div class="post">
+                <h3>Puntos Débiles de los Titanes</h3>
+                <div class="post-meta">Publicado el 18 de Octubre, 2023 por <a href="#">Erwin Smith</a></div>
+                <p>Todos los Titanes comparten un punto vulnerable:</p>
+                
+                <h4>Nuca (1 metro de ancho x 10 cm de alto)</h4>
+                <p>El único punto fatal. Un corte limpio aquí eliminará al Titán inmediatamente.</p>
+                
+                <h4>Ojos</h4>
+                <p>Cegar temporalmente al Titán puede darte ventaja para reposicionarte.</p>
+                
+                <h4>Tendones de las piernas</h4>
+                <p>Cortar aquí puede inmovilizar a un Titán, permitiendo la huida.</p>
+                
+                <h4>Estrategias por Tipo</h4>
+                <p><strong>Comunes:</strong> Atacar desde atrás<br>
+                <strong>Aberrantes:</strong> Engañar con movimientos falsos<br>
+                <strong>Acorazados:</strong> Buscar articulaciones sin protección<br>
+                <strong>Colosales:</strong> Evitar el vapor quemante</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Sobrevivir a los Titanes. Todos los derechos reservados.</p>
+            <p>Este blog es ficticio y creado con fines educativos. Attack on Titan es propiedad de Hajime Isayama y Kodansha.</p>
+        </div>
+    </footer>
+    
+    <div class="back-to-top" id="backToTop">↑</div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegación y activación de secciones
+            const navLinks = document.querySelectorAll('.nav-link');
+            const indicatorDots = document.querySelectorAll('.indicator-dot');
+            const sections = document.querySelectorAll('section');
+            
+            // Función para actualizar la navegación activa
+            function updateActiveSection() {
+                const scrollPosition = window.scrollY + 100;
+                
+                sections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        // Actualizar navegación principal
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        document.querySelector(`.nav-link[href="#${section.id}"]`).classList.add('active');
+                        
+                        // Actualizar indicadores laterales
+                        indicatorDots.forEach(dot => dot.classList.remove('active'));
+                        indicatorDots[index].classList.add('active');
+                    }
+                });
+            }
+            
+            // Configurar eventos de click para navegación
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const targetId = this.getAttribute('href');
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Configurar eventos de click para indicadores
+            indicatorDots.forEach(dot => {
+                dot.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    indicatorDots.forEach(d => d.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const targetId = this.getAttribute('href');
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Botón de volver arriba
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                updateActiveSection();
+                
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Inicializar la sección activa al cargar
+            updateActiveSection();
+        });
+    </script>
+</body>
+</html>
